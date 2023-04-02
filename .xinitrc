@@ -46,7 +46,7 @@ xbindkeys &
 
 # getting correct displays
 # set in xorg.conf.d later see xrandr man pages for multihead
-xrandr --output DP-2 --mode 2560x1440 --rate 164.83 --primary --output DP-0 --right-of DP-2
+xrandr --output DP-2 --mode 2560x1440 --rate 164.83 --primary --output DP-0 --mode 1920x1080 --rate 144.00 --right-of DP-2
 
 # unclutter to hide mouse after 5 seconds
 unclutter &
