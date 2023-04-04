@@ -141,7 +141,7 @@ font:
       family: Hack Nerd Font
       style: Bold Italic
 
-    size: 12
+    size: 11
     
     # Default:
     #   - (macOS) Menlo
