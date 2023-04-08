@@ -63,6 +63,7 @@ RC.launcher = awful.widget.launcher(
 )
 menubar.utils.terminal = RC.vars.terminal
 
+-- TODO: OLD REMOVE new is above
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 -- myawesomemenu = {
@@ -191,7 +192,7 @@ awful.screen.connect_for_each_screen(function(s)
         {
             -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            RC.launcher,
             s.mytaglist,
             s.mypromptbox,
         },

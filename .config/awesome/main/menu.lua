@@ -42,7 +42,7 @@ function _M.get()
 
   -- Main Menu
   local menu_items = {
-    { "awesome", M.awesome, beautiful.awesome_subicon },
+    { "awesome", M.awesome, beautiful.awesome_icon },
     { "open terminal", terminal },
     { "favourites", M.favourites }
   }
