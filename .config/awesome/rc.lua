@@ -18,6 +18,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+RC = {} -- global namespace, on top before require any modules
+RC.vars = require("main.user-variables")
+
 -- Error handling
 require("main.error-handling")
 
@@ -27,8 +30,8 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 vars = require("main.user-variables")
 -- This is used later as the default terminal and editor to run.
-terminal = vars.terminal
-editor = vars.editor
+terminal = RC.vars.terminal
+editor = RC.vars.editor
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -36,28 +39,19 @@ editor_cmd = terminal .. " -e " .. editor
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = vars.modkey
+modkey = RC.vars.modkey
 
--- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
+-- Custom Local library
+local main = {
+  layouts = require("main.layouts"),
+  tags    = require("main.tags"),
+  menu    = require("main.menu"),
+  rules   = require("main.rules"),
 }
--- }}}
+
+-- Layouts
+RC.layouts = main.layouts
+
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
