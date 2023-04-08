@@ -31,7 +31,7 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 vars = require("main.user-variables")
 -- This is used later as the default terminal and editor to run.
 -- previous
--- terminal = RC.vars.terminal
+terminal = RC.vars.terminal
 -- editor = RC.vars.editor
 -- editor_cmd = terminal .. " -e " .. editor
 
