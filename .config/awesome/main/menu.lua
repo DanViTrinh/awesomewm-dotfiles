@@ -32,6 +32,10 @@ M.awesome = {
   { "quit", function() awesome.quit() end }
 }
 
+M.favourites = {
+    {"firefox" , "firefox"}
+}
+
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 function _M.get()
@@ -39,7 +43,8 @@ function _M.get()
   -- Main Menu
   local menu_items = {
     { "awesome", M.awesome, beautiful.awesome_subicon },
-    { "open terminal", terminal }
+    { "open terminal", terminal },
+    { "favourites", M.favourites }
   }
 
   return menu_items
