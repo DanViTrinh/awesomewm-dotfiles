@@ -43,10 +43,10 @@ modkey = RC.vars.modkey
 
 -- Custom Local library
 local main = {
-  layouts = require("main.layouts"),
-  tags    = require("main.tags"),
-  menu    = require("main.menu"),
-  rules   = require("main.rules"),
+    layouts = require("main.layouts"),
+    tags    = require("main.tags"),
+    menu    = require("main.menu"),
+    rules   = require("main.rules"),
 }
 
 -- Layouts
@@ -146,6 +146,10 @@ screen.connect_signal("property::geometry", set_wallpaper)
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
+    -- Each screen has its own tag table.
+    -- default
+    -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[2])
+
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -178,7 +182,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         {
-          -- Left widgets
+            -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
             s.mytaglist,
@@ -186,7 +190,7 @@ awful.screen.connect_for_each_screen(function(s)
         },
         s.mytasklist, -- Middle widget
         {
-                      -- Right widgets
+            -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
@@ -456,7 +460,7 @@ awful.rules.rules = {
     {
         rule_any = {
             instance = {
-                "DTA", -- Firefox addon DownThemAll.
+                "DTA",   -- Firefox addon DownThemAll.
                 "copyq", -- Includes session name in class.
                 "pinentry",
             },
@@ -465,7 +469,7 @@ awful.rules.rules = {
                 "Blueman-manager",
                 "Gpick",
                 "Kruler",
-                "MessageWin", -- kalarm.
+                "MessageWin",  -- kalarm.
                 "Sxiv",
                 "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
                 "Wpa_gui",
@@ -477,9 +481,9 @@ awful.rules.rules = {
                 "Event Tester", -- xev.
             },
             role = {
-                "AlarmWindow", -- Thunderbird's calendar.
+                "AlarmWindow",   -- Thunderbird's calendar.
                 "ConfigManager", -- Thunderbird's about:config.
-                "pop-up",  -- e.g. Google Chrome's (detached) Developer Tools.
+                "pop-up",        -- e.g. Google Chrome's (detached) Developer Tools.
             }
         },
         properties = { floating = true }
@@ -529,15 +533,15 @@ client.connect_signal("request::titlebars", function(c)
 
     awful.titlebar(c):setup {
         {
-          -- Left
+            -- Left
             awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
             layout  = wibox.layout.fixed.horizontal
         },
         {
-              -- Middle
+            -- Middle
             {
-              -- Title
+                -- Title
                 align  = "center",
                 widget = awful.titlebar.widget.titlewidget(c)
             },
@@ -545,7 +549,7 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.flex.horizontal
         },
         {
-          -- Right
+            -- Right
             awful.titlebar.widget.floatingbutton(c),
             awful.titlebar.widget.maximizedbutton(c),
             awful.titlebar.widget.stickybutton(c),

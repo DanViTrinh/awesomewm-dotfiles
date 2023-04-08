@@ -23,6 +23,7 @@ function _M.get()
     awful.screen.connect_for_each_screen(function(s)
         -- Each screen has its own tag table.
         tags[s] = awful.tag(tagpairs.names, s, tagpairs.layout)
+
     end)
 
     return tags
