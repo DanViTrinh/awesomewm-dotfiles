@@ -44,7 +44,8 @@ function _M.get()
   local menu_items = {
     { "awesome", M.awesome, beautiful.awesome_icon },
     { "open terminal", terminal },
-    { "favourites", M.favourites }
+    { "favourites", M.favourites },
+    {"screenshot", function() awful.util.spawn("flameshot gui") end}
   }
 
   return menu_items
