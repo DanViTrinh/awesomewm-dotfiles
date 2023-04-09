@@ -299,12 +299,19 @@ globalkeys = gears.table.join(
 
     -- Firefox
     awful.key({ modkey }, "b", function() awful.util.spawn("firefox") end,
-        { description = "firefox", group = "applications" }),
+        { description = "firefox", group = "launcher" }),
 
     -- Flameshot screenshot
     awful.key({ modkey, "Shift" }, "s", function() awful.util.spawn("flameshot gui") end,
-        { description = "flameshot screenshot", group = "applications" })
+        { description = "flameshot screenshot", group = "launcher" }),
 
+    -- Music player  
+    awful.key({ modkey }, "ø", function() awful.util.spawn("/home/Dan/.local/share/spotify-launcher/install/usr/share/spotify/spotify") end,
+        { description = "music player", group = "launcher" }),
+
+    -- vscode 
+    awful.key({ modkey }, "æ", function() awful.util.spawn("code") end,
+        { description = "vscode", group = "launcher" })
 
 )
 
