@@ -48,7 +48,7 @@ xbindkeys &
 # set in xorg.conf.d later see xrandr man pages for multihead
 MONITORPARAMS=(
   --output DP-2 --mode 2560x1440 --rate 164.83 --primary # main monitor
-  --output DP-0 --mode 1920x1080 --rate 144.00 --right-of DP-2 # second monitor
+  --output DP-0 --mode 1920x1080 --rate 144.00 --left-of DP-2 # second monitor
   )
 xrandr "${MONITORPARAMS[@]}"
 
