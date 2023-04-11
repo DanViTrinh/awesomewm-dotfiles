@@ -57,9 +57,9 @@ RC.layouts = main.layouts
 RC.tags = main.tags()
 
 -- Menu
-RC.mainmenu = awful.menu({items = main.menu()})
+RC.mainmenu = awful.menu({ items = main.menu() })
 RC.launcher = awful.widget.launcher(
-    {image = beautiful.awesome_icon, menu = RC.mainmenu}
+    { image = beautiful.awesome_icon, menu = RC.mainmenu }
 )
 menubar.utils.terminal = RC.vars.terminal
 
@@ -186,11 +186,11 @@ end)
 
 -- Custom Local Library: Keys and Mouse Binding
 local binding = {
-  globalbuttons = require("binding.globalbuttons"),
---   clientbuttons = require("binding.clientbuttons"),
---   globalkeys    = require("binding.globalkeys"),
---   bindtotags    = require("binding.bindtotags"),
---   clientkeys    = require("binding.clientkeys")
+    globalbuttons = require("binding.globalbuttons"),
+    clientbuttons = require("binding.clientbuttons"),
+    --   globalkeys    = require("binding.globalkeys"),
+    --   bindtotags    = require("binding.bindtotags"),
+    --   clientkeys    = require("binding.clientkeys")
 }
 
 -- Global mouose bindings
@@ -309,11 +309,12 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift" }, "s", function() awful.util.spawn("flameshot gui") end,
         { description = "flameshot screenshot", group = "launcher" }),
 
-    -- Music player  
-    awful.key({ modkey }, "ø", function() awful.util.spawn("/home/Dan/.local/share/spotify-launcher/install/usr/share/spotify/spotify") end,
+    -- Music player
+    awful.key({ modkey }, "ø",
+        function() awful.util.spawn("/home/Dan/.local/share/spotify-launcher/install/usr/share/spotify/spotify") end,
         { description = "music player", group = "launcher" }),
 
-    -- vscode 
+    -- vscode
     awful.key({ modkey }, "æ", function() awful.util.spawn("code") end,
         { description = "vscode", group = "launcher" })
 
@@ -413,27 +414,16 @@ for i = 1, 9 do
     )
 end
 
-clientbuttons = gears.table.join(
-    awful.button({}, 1, function(c)
-        c:emit_signal("request::activate", "mouse_click", { raise = true })
-    end),
-    awful.button({ modkey }, 1, function(c)
-        c:emit_signal("request::activate", "mouse_click", { raise = true })
-        awful.mouse.client.move(c)
-    end),
-    awful.button({ modkey }, 3, function(c)
-        c:emit_signal("request::activate", "mouse_click", { raise = true })
-        awful.mouse.client.resize(c)
-    end)
-)
-
 -- Set keys
 root.keys(globalkeys)
 -- }}}
 --
 
 -- Rules
-awful.rules.rules = main.rules(clientkeys,clientbuttons)
+awful.rules.rules = main.rules(
+    clientkeys,
+    binding.clientbuttons()
+)
 
 -- Signals
 require("main.signals")
