@@ -184,13 +184,17 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 
--- {{{ Mouse bindings
-root.buttons(gears.table.join(
-    awful.button({}, 3, function() RC.mainmenu:toggle() end),
-    awful.button({}, 4, awful.tag.viewnext),
-    awful.button({}, 5, awful.tag.viewprev)
-))
--- }}}
+-- Custom Local Library: Keys and Mouse Binding
+local binding = {
+  globalbuttons = require("binding.globalbuttons"),
+--   clientbuttons = require("binding.clientbuttons"),
+--   globalkeys    = require("binding.globalkeys"),
+--   bindtotags    = require("binding.bindtotags"),
+--   clientkeys    = require("binding.clientkeys")
+}
+
+-- Global mouose bindings
+root.buttons(binding.globalbuttons())
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
