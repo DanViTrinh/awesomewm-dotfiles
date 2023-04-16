@@ -213,6 +213,9 @@ require("main.signals")
 -- Custom local library: Common functional decoration
 require("deco.titlebar")
 
+-- Statusbar: Wibar
+require("deco.statusbar")
+
 -- TODO: Test: remove the below line and set properly
 -- Boder color and width
 beautiful.border_focus = "#eb3486"
