@@ -210,6 +210,8 @@ awful.rules.rules = main.rules(
 -- Signals
 require("main.signals")
 
+-- Custom local library: Common functional decoration
+require("deco.titlebar")
 
 -- TODO: Test: remove the below line and set properly
 -- Boder color and width
