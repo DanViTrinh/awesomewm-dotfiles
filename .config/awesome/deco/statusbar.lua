@@ -2,9 +2,6 @@
 local gears = require("gears")
 local awful = require("awful")
 
-local _M = {}
-
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 -- Wibox handling library
 local wibox = require("wibox")
 
@@ -18,11 +15,15 @@ local deco = {
 local taglist_buttons = deco.taglist()
 local tasklist_buttons = deco.tasklist()
 
--- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+local _M = {}
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 
 -- Wibar
+-- Create a textclock widget
+mytextclock = wibox.widget.textclock()
+
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -78,4 +79,5 @@ awful.screen.connect_for_each_screen(function(s)
             s.mylayoutbox,
         },
     }
+
 end)
