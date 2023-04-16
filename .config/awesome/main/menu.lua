@@ -33,7 +33,8 @@ M.awesome = {
 }
 
 M.favourites = {
-    {"firefox" , "firefox"}
+    {"firefox" , "firefox"},
+    {"spotify" ,"/home/Dan/.local/share/spotify-launcher/install/usr/share/spotify/spotify"}
 }
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --

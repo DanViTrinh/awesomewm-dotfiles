@@ -121,7 +121,7 @@ function _M.get()
             { description = "show the menubar", group = "launcher" }),
 
         -- Firefox
-        awful.key({ modkey }, "b", function() awful.util.spawn("firefox") end,
+        awful.key({ modkey }, "ø", function() awful.util.spawn("firefox") end,
             { description = "firefox", group = "launcher" }),
 
         -- Flameshot screenshot
@@ -129,12 +129,12 @@ function _M.get()
             { description = "flameshot screenshot", group = "launcher" }),
 
         -- Music player
-        awful.key({ modkey }, "ø",
+        awful.key({ modkey }, "æ",
             function() awful.util.spawn("/home/Dan/.local/share/spotify-launcher/install/usr/share/spotify/spotify") end,
             { description = "music player", group = "launcher" }),
 
         -- vscode
-        awful.key({ modkey }, "æ", function() awful.util.spawn("code") end,
+        awful.key({ modkey }, ".", function() awful.util.spawn("code") end,
             { description = "vscode", group = "launcher" })
 
     )
