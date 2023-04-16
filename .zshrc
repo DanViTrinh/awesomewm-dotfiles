@@ -83,6 +83,7 @@ plugins=(
   zsh-syntax-highlighting
   copybuffer
   copypath
+  copyfile
 )
 
 source $ZSH/oh-my-zsh.sh
