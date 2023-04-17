@@ -70,9 +70,9 @@ function _M.get()
             { description = "view next", group = "tag" }),
 
         -- TODO: decide if this is ok
-        awful.key({ modkey,"Control", altkey }, "h", awful.tag.viewprev,
+        awful.key({ modkey, "Control", altkey }, "h", awful.tag.viewprev,
             { description = "view previous", group = "tag" }),
-        awful.key({ modkey,"Control", altkey }, "l", awful.tag.viewnext,
+        awful.key({ modkey, "Control", altkey }, "l", awful.tag.viewnext,
             { description = "view next", group = "tag" }),
 
         awful.key({ modkey, }, "Escape", awful.tag.history.restore,
@@ -263,8 +263,22 @@ function _M.get()
             { description = "vscode", group = "launcher" }),
 
         -- Toggle external monitor
-        awful.key({ modkey ,altkey,"Control"}, "o", function() awful.util.spawn("toggle-ext") end,
-            { description = "toggle external monitor", group = "launcher" })
+        awful.key({ modkey, altkey, "Control" }, "o", function() awful.util.spawn("toggle-ext") end,
+            { description = "toggle external monitor", group = "launcher" }),
+
+        -- Suspend machine
+        awful.key({ modkey, "Control" }, "Escape",
+            function()
+                awful.util.spawn("systemctl suspend")
+            end,
+            { description = "suspend/sleep machine", group = "launcher" }),
+
+        -- Power off  machine
+        awful.key({ modkey, "Control", altkey }, "Escape",
+            function()
+                awful.util.spawn("systemctl poweroff")
+            end,
+            { description = "power off pc", group = "launcher" })
 
     )
     return globalkeys
