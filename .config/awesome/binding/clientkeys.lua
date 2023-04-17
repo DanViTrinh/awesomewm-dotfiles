@@ -3,7 +3,12 @@ local gears = require("gears")
 local awful = require("awful")
 
 local _M = {}
+
+-- Define mod keys 
 local modkey = RC.vars.modkey
+local altkey = "Mod1"
+-- define moudule table
+local keys = {}
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
