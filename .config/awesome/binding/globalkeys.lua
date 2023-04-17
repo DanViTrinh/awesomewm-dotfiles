@@ -68,6 +68,13 @@ function _M.get()
             { description = "view previous", group = "tag" }),
         awful.key({ modkey, }, "Right", awful.tag.viewnext,
             { description = "view next", group = "tag" }),
+
+        -- TODO: decide if this is ok
+        awful.key({ modkey,"Control", altkey }, "h", awful.tag.viewprev,
+            { description = "view previous", group = "tag" }),
+        awful.key({ modkey,"Control", altkey }, "l", awful.tag.viewnext,
+            { description = "view next", group = "tag" }),
+
         awful.key({ modkey, }, "Escape", awful.tag.history.restore,
             { description = "go back", group = "tag" }),
 
