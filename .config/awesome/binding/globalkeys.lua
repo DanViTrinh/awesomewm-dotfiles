@@ -278,7 +278,7 @@ function _M.get()
             function()
                 awful.util.spawn("systemctl poweroff")
             end,
-            { description = "power off pc", group = "launcher" })
+            { description = "power off machine", group = "launcher" })
 
     )
     return globalkeys
