@@ -166,6 +166,20 @@ function _M.get()
             { description = "focus right", group = "client" }
         ),
 
+        -- Focus client by index (cycle through clients)
+        awful.key({ modkey }, "z",
+            function()
+                awful.client.focus.byidx(1)
+            end,
+            { description = "focus next by index", group = "client" }
+        ),
+        awful.key({ modkey, "Shift" }, "z",
+            function()
+                awful.client.focus.byidx(-1)
+            end,
+            { description = "focus previous by index", group = "client" }
+        ),
+
 
         -- Standard program
         awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
@@ -179,7 +193,7 @@ function _M.get()
         -- awful.key({ modkey, }, "l", function() awful.tag.incmwfact(0.05) end,
         --     { description = "increase master width factor", group = "layout" }),
         -- awful.key({ modkey, }, "h", function() awful.tag.incmwfact(-0.05) end,
-            -- { description = "decrease master width factor", group = "layout" }),
+        -- { description = "decrease master width factor", group = "layout" }),
         awful.key({ modkey, "Shift" }, "h", function() awful.tag.incnmaster(1, nil, true) end,
             { description = "increase the number of master clients", group = "layout" }),
         awful.key({ modkey, "Shift" }, "l", function() awful.tag.incnmaster(-1, nil, true) end,
