@@ -102,7 +102,7 @@ require("awful.autofocus")
 -- TODO: Test: remove the below line and set properly
 --Boder color and width
 beautiful.border_focus = "#eb3485"
-beautiful.border_width = 0.5
+beautiful.border_width = 1.5
 
 
 -- Autostart Applications
