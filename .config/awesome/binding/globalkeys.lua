@@ -260,7 +260,11 @@ function _M.get()
 
         -- vscode
         awful.key({ modkey }, ".", function() awful.util.spawn("code") end,
-            { description = "vscode", group = "launcher" })
+            { description = "vscode", group = "launcher" }),
+
+        -- Toggle external monitor
+        awful.key({ modkey ,altkey,"Control"}, "o", function() awful.util.spawn("toggle-ext") end,
+            { description = "toggle external monitor", group = "launcher" })
 
     )
     return globalkeys
