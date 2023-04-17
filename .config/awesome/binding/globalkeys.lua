@@ -10,9 +10,6 @@ local menubar = require("menubar")
 local modkey = RC.vars.modkey
 local altkey = "Mod1"
 
--- define moudule table
-local keys = {}
-
 local terminal = RC.vars.terminal
 
 local beautiful = require("beautiful")
@@ -22,44 +19,6 @@ local _M = {}
 
 -- reading
 -- https://awesomewm.org/wiki/Global_Keybindings
-
--- Move given client to given direction
-local function move_client(c, direction)
-    -- If client is floating, move to edge
-    if c.floating or (awful.layout.get(mouse.screen) == awful.layout.suit.floating) then
-        local workarea = awful.screen.focused().workarea
-        if direction == "up" then
-            c:geometry({ nil, y = workarea.y + beautiful.useless_gap * 2, nil, nil })
-        elseif direction == "down" then
-            c:geometry({
-                nil,
-                y = workarea.height + workarea.y - c:geometry().height - beautiful.useless_gap * 2 -
-                    beautiful.border_width * 2,
-                nil,
-                nil
-            })
-        elseif direction == "left" then
-            c:geometry({ x = workarea.x + beautiful.useless_gap * 2, nil, nil, nil })
-        elseif direction == "right" then
-            c:geometry({
-                x = workarea.width + workarea.x - c:geometry().width - beautiful.useless_gap * 2 -
-                    beautiful.border_width * 2,
-                nil,
-                nil,
-                nil
-            })
-        end
-        -- Otherwise swap the client in the tiled layout
-    elseif awful.layout.get(mouse.screen) == awful.layout.suit.max then
-        if direction == "up" or direction == "left" then
-            awful.client.swap.byidx(-1, c)
-        elseif direction == "down" or direction == "right" then
-            awful.client.swap.byidx(1, c)
-        end
-    else
-        awful.client.swap.bydirection(direction, c, nil)
-    end
-end
 
 -- Resize client in given direction
 local floating_resize_amount = dpi(20)
@@ -115,10 +74,11 @@ function _M.get()
         awful.key({ modkey, }, "w", function() RC.mainmenu:show() end,
             { description = "show main menu", group = "awesome" }),
 
+
         -- Layout manipulation
-        awful.key({ modkey, "Shift" }, "j", function() awful.client.swap.byidx(1) end,
+        awful.key({ modkey, "Shift" }, "z", function() awful.client.swap.byidx(1) end,
             { description = "swap with next client by index", group = "client" }),
-        awful.key({ modkey, "Shift" }, "k", function() awful.client.swap.byidx(-1) end,
+        awful.key({ modkey, "Shift", altkey }, "z", function() awful.client.swap.byidx(-1) end,
             { description = "swap with previous client by index", group = "client" }),
         awful.key({ modkey }, "o", function() awful.screen.focus_relative(1) end,
             { description = "focus the next screen", group = "screen" }),
@@ -173,7 +133,7 @@ function _M.get()
             end,
             { description = "focus next by index", group = "client" }
         ),
-        awful.key({ modkey, "Shift" }, "z",
+        awful.key({ modkey, altkey }, "z",
             function()
                 awful.client.focus.byidx(-1)
             end,

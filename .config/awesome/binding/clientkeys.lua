@@ -4,11 +4,49 @@ local awful = require("awful")
 
 local _M = {}
 
--- Define mod keys 
+-- Define mod keys
 local modkey = RC.vars.modkey
 local altkey = "Mod1"
 -- define moudule table
-local keys = {}
+
+-- Move given client to given direction
+local function move_client(c, direction)
+    -- If client is floating, move to edge
+    if c.floating or (awful.layout.get(mouse.screen) == awful.layout.suit.floating) then
+        local workarea = awful.screen.focused().workarea
+        if direction == "up" then
+            c:geometry({ nil, y = workarea.y + beautiful.useless_gap * 2, nil, nil })
+        elseif direction == "down" then
+            c:geometry({
+                nil,
+                y = workarea.height + workarea.y - c:geometry().height - beautiful.useless_gap * 2 -
+                    beautiful.border_width * 2,
+                nil,
+                nil
+            })
+        elseif direction == "left" then
+            c:geometry({ x = workarea.x + beautiful.useless_gap * 2, nil, nil, nil })
+        elseif direction == "right" then
+            c:geometry({
+                x = workarea.width + workarea.x - c:geometry().width - beautiful.useless_gap * 2 -
+                    beautiful.border_width * 2,
+                nil,
+                nil,
+                nil
+            })
+        end
+        -- Otherwise swap the client in the tiled layout
+    elseif awful.layout.get(mouse.screen) == awful.layout.suit.max then
+        if direction == "up" or direction == "left" then
+            awful.client.swap.byidx(-1, c)
+        elseif direction == "down" or direction == "right" then
+            awful.client.swap.byidx(1, c)
+        end
+    else
+        awful.client.swap.bydirection(direction, c, nil)
+    end
+end
+
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
@@ -26,7 +64,7 @@ function _M.get()
             { description = "toggle floating", group = "client" }),
         awful.key({ modkey, "Control" }, "Return", function(c) c:swap(awful.client.getmaster()) end,
             { description = "move to master", group = "client" }),
-        awful.key({ modkey,"Shift" }, "o", function(c) c:move_to_screen() end,
+        awful.key({ modkey, "Shift" }, "o", function(c) c:move_to_screen() end,
             { description = "move to screen", group = "client" }),
         awful.key({ modkey, }, "t", function(c) c.ontop = not c.ontop end,
             { description = "toggle keep on top", group = "client" }),
@@ -54,7 +92,29 @@ function _M.get()
                 c.maximized_horizontal = not c.maximized_horizontal
                 c:raise()
             end,
-            { description = "(un)maximize horizontally", group = "client" })
+            { description = "(un)maximize horizontally", group = "client" }),
+
+        -- Move client to edge or swap by direction
+        awful.key({ modkey, "Shift" }, "j",
+            function(c)
+                move_client(c, "down")
+            end
+        ),
+        awful.key({ modkey, "Shift" }, "k",
+            function(c)
+                move_client(c, "up")
+            end
+        ),
+        awful.key({ modkey, "Shift" }, "h",
+            function(c)
+                move_client(c, "left")
+            end
+        ),
+        awful.key({ modkey, "Shift" }, "l",
+            function(c)
+                move_client(c, "right")
+            end
+        )
     )
 
     return clientkeys
