@@ -92,6 +92,9 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+function open () {
+  xdg-open "$@">/dev/null 2>&1
+}
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
