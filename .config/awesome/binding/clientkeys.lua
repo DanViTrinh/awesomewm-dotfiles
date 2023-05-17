@@ -1,6 +1,7 @@
 -- Standard Awesome library
 local gears = require("gears")
 local awful = require("awful")
+local beautiful = require("beautiful")
 
 local _M = {}
 
