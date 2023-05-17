@@ -227,7 +227,6 @@ function _M.get()
             { description = "restore minimized", group = "client" }),
 
         -- Prompt
-        -- dmenu
         awful.key({ modkey }, "r", function() awful.util.spawn("dmenu_run") end,
             { description = "run dmenu", group = "launcher" }),
 
@@ -241,9 +240,12 @@ function _M.get()
                 }
             end,
             { description = "lua execute prompt", group = "awesome" }),
-        -- Menubar
-        awful.key({ modkey }, "p", function() menubar.show() end,
-            { description = "show the menubar", group = "launcher" }),
+
+        -- Rofi
+        awful.key({ modkey }, "p", function() awful.util.spawn("launcher_t1") end,
+            { description = "application launcher", group = "launcher" }),
+        -- awful.key({ modkey }, "p", function() awful.util.spawn("rofi -show drun -theme /home/Dan/.config/rofi/launchers/type-1/style-5.rasi") end,
+            -- { description = "application launcher", group = "launcher" }),
 
         -- Firefox
         awful.key({ modkey }, "ø", function() awful.util.spawn("firefox") end,
@@ -278,9 +280,19 @@ function _M.get()
             function()
                 awful.util.spawn("systemctl poweroff")
             end,
-            { description = "power off machine", group = "launcher" })
+            { description = "power off machine", group = "launcher" }),
 
-    )
+        awful.key({ modkey, altkey }, "Escape",
+            function()
+                -- awful.util.spawn("xset dpms force off")
+                awful.util.spawn("/home/Dan/bin/turn_off_display")
+                -- awful.util.spawn("sleep 1; xset dpms force off")
+                -- awful.util.spawn("perl -e 'select(undef,undef,undef,.1)' && xset dpms force off")
+                -- awful.util.spawn("./home/Dan/turn_off_display.sh")
+            end,
+            { description = "turn of display", group = "launcher" })
+
+            )    
     return globalkeys
 end
 

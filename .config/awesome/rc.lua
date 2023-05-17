@@ -108,6 +108,7 @@ beautiful.border_width = 1.5
 -- Autostart Applications
 awful.spawn.with_shell("picom")
 awful.spawn.with_shell("nitrogen --restore")
+--awful.spawn.with_shell("spotify-launcher")
 
 -- TODO: Test remove later
-beautiful.useless_gap = 5
+-- beautiful.useless_gap = 5
