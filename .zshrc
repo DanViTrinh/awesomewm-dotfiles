@@ -11,7 +11,7 @@ fi
 # Path to your oh-my-zsh installation.
 # export ZSH="$HOME/.oh-my-zsh"
 
-# Path to rofi themes 
+# Path to rofi themes
 # export PATH=$HOME/.config/rofi/scripts:$PATH
 
 # Set name of the theme to load --- if set to "random", it will
@@ -92,9 +92,29 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# Functions
+
+# open with default application
 function open () {
   xdg-open "$@">/dev/null 2>&1
 }
+
+# cd with lf
+function lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}
+
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
