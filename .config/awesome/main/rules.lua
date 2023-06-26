@@ -57,16 +57,16 @@ function _M.get(clientkeys, clientbuttons)
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
       },
-      properties = { 
-        floating = true 
+      properties = {
+        floating = true
       }
     },
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {
         type = { "normal", "dialog" }
-      }, 
-      properties = { 
+      },
+      properties = {
         titlebars_enabled = true
       }
     },
@@ -74,6 +74,14 @@ function _M.get(clientkeys, clientbuttons)
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
+    { rule = { class = "Spotify" },
+      properties = { screen=1, tag = awful.screen.focused().tags[9] } },
+    { rule = { class = "discord" },
+      properties = { screen=1, tag = awful.screen.focused().tags[8] } },
+    { rule = { class = "Stremio" },
+      properties = { screen=1, tag = awful.screen.focused().tags[7] } },
+    { rule = { class = "Google-chrome" },
+      properties = { screen=1, tag = awful.screen.focused().tags[7] } },
 
   }
 
@@ -83,6 +91,6 @@ end
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 return setmetatable(
-  {}, 
+  {},
   { __call = function(_, ...) return _M.get(...) end }
 )
