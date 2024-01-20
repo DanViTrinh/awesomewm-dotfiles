@@ -5,6 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export VISUAL=nvim
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -115,6 +117,12 @@ function lfcd () {
     fi
 }
 
+# exit nnn 
+if [ -f /usr/share/nnn/quitcd/quitcd.bash_zsh ]; then
+    source /usr/share/nnn/quitcd/quitcd.bash_zsh
+fi
+
+
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -145,3 +153,66 @@ alias ssh="kitty +kitten ssh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE='/home/Dan/.micromamba/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/home/Dan/micromamba';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/Dan/micromamba/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/Dan/micromamba/etc/profile.d/conda.sh" ]; then
+        . "/home/Dan/micromamba/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/Dan/micromamba/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+#
+# open and close vs code
+codec (){
+  command code "$@" && exit;
+
+}
+
+# mount google drive 
+# rclone mount --daemon --vfs-cache-mode full dantrinh02:/ /home/Dan/dantrinh02-gdrive/
+
+# ranger 
+alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+
+# nvim chooser 
+alias nvim-lazy="NVIM_APPNAME=nvim_lazy nvim"
+alias nvim-old="NVIM_APPNAME=nvim_old nvim"
+alias nvim-cp="NVIM_APPNAME=nvim_cp nvim"
+
+function nvims() {
+  items=("default" "nvim_old" "nvim_cp" "nvim_lazy")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
+
+# leet alias
+alias leetcode="nvim leetcode.nvim"
+
+# alias tmux
+alias tmux="tmux -u"

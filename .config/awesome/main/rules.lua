@@ -75,13 +75,13 @@ function _M.get(clientkeys, clientbuttons)
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
     { rule = { class = "Spotify" },
-      properties = { screen=1, tag = awful.screen.focused().tags[9] } },
+      properties = {  tag = awful.screen.focused().tags[9] } },
     { rule = { class = "discord" },
-      properties = { screen=1, tag = awful.screen.focused().tags[8] } },
+      properties = {  tag = awful.screen.focused().tags[8] } },
     { rule = { class = "Stremio" },
-      properties = { screen=1, tag = awful.screen.focused().tags[7] } },
+      properties = {  tag = awful.screen.focused().tags[7] } },
     { rule = { class = "Google-chrome" },
-      properties = { screen=1, tag = awful.screen.focused().tags[7] } },
+      properties = {  tag = awful.screen.focused().tags[7] } },
 
   }
 

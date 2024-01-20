@@ -55,5 +55,6 @@ xrandr "${MONITORPARAMS[@]}"
 # unclutter to hide mouse after 5 seconds
 unclutter &
 
+
 exec awesome
 

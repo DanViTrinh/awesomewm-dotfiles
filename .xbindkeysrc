@@ -57,11 +57,11 @@
 
 # multimedia keys
 # Increase volume
-"pactl set-sink-volume @DEFAULT_SINK@ +1000"
+"pactl set-sink-volume @DEFAULT_SINK@ +4000"
    XF86AudioRaiseVolume
 
 # Decrease volume
-"pactl set-sink-volume @DEFAULT_SINK@ -1000"
+"pactl set-sink-volume @DEFAULT_SINK@ -4000"
    XF86AudioLowerVolume
 
 # Mute volume
